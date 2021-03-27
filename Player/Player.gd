@@ -32,7 +32,6 @@ func _ready():
 	swordHitbox.knockback_vector = roll_vector
 
 
-
 func _physics_process(delta): # waits until physics have been processed
 	match state:  # switch statement in GODOT - no case
 		MOVE: # if the state matches MOVE then  - move_state(delta)
@@ -70,10 +69,6 @@ func attack_state(_delta):
 	
 func move():
 	velocity = move_and_slide(velocity)
-	
-func roll_animation_finished():
-	velocity = velocity * 0.5
-	state = MOVE
 
 func attack_animation_finished():
 	state = MOVE
