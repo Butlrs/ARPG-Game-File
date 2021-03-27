@@ -668,6 +668,7 @@ light_mask = -2147483648
 position = Vector2( 175, 389 )
 scale = Vector2( 1.43333, 1.43333 )
 frames = SubResource( 59 )
+frame = 7
 playing = true
 
 [node name="Attack" type="AnimatedSprite" parent="Tooltips"]
@@ -676,7 +677,7 @@ light_mask = 0
 position = Vector2( -144, 232 )
 scale = Vector2( 1.43333, 1.43333 )
 frames = SubResource( 70 )
-frame = 9
+frame = 5
 playing = true
 
 [node name="Roll" type="AnimatedSprite" parent="Tooltips"]
@@ -685,11 +686,12 @@ light_mask = 0
 position = Vector2( -728, 288 )
 scale = Vector2( 1.458, 1.45801 )
 frames = SubResource( 81 )
-frame = 3
+frame = 9
 playing = true
 
 [node name="Camera2D" parent="." instance=ExtResource( 12 )]
 position = Vector2( 176, 440 )
+zoom = Vector2( 0.8, 0.8 )
 
 [node name="TopLeft" parent="Camera2D/Limits" index="0"]
 position = Vector2( -1040, -480 )

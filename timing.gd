@@ -3,7 +3,7 @@ extends Control
 const SECOND = 100
 var timer = 200*SECOND
 
-func _process(delta):
+func _process(_delta):
 	var secondarytimer = 0
 	timer -=1 
 	secondarytimer = (timer/SECOND)
