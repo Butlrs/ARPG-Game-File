@@ -9,7 +9,6 @@ export var FRICTION = 500
 
 enum {
 	MOVE, # string value representations
-	ROLL, # unachangeable variables
 	ATTACK # automatic value 0,1,2
 }
 
@@ -38,8 +37,6 @@ func _physics_process(delta): # waits until physics have been processed
 	match state:  # switch statement in GODOT - no case
 		MOVE: # if the state matches MOVE then  - move_state(delta)
 			move_state(delta)
-		ROLL: #  only one at a time
-			roll_state(delta)
 		ATTACK:
 			attack_state(delta)
 	
@@ -63,16 +60,9 @@ func move_state(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
 	move()
-	if Input.is_action_just_pressed("roll"):
-		state = ROLL
 	
 	if Input.is_action_just_pressed("attack"):
 		state = ATTACK # stops running move case - starts attack case
-
-func roll_state(_delta):
-	velocity = roll_vector * ROLL_SPEED # no acceleration
-	animationState.travel("Roll")
-	move()
 
 func attack_state(_delta):
 	velocity = Vector2.ZERO # sets velocity to 0.
