@@ -2,7 +2,7 @@ extends Node
 export(int) var max_health = 1 setget set_max_health # allows for script variables - altering value
 var health = max_health setget set_health# use function every variable change (health)
 
-export (bool) var state = false
+export (bool) var bat = false
 export (bool) var hard = false
 
 signal no_health()
@@ -23,7 +23,7 @@ func set_health(value):
 		if hard == true:
 			GlobalCanvas.kc += 2
 		else:
-			if state == false:
+			if bat == false:
 				GlobalCanvas.kc += 1
 			else:
 				pass
