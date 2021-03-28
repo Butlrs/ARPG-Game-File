@@ -122,6 +122,7 @@ shape = SubResource( 9 )
 
 [node name="stats" parent="." instance=ExtResource( 5 )]
 max_health = 3
+bat = true
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 6 )]
 

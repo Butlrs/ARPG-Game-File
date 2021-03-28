@@ -55,7 +55,7 @@ height = 6.0
 radius = 48.0
 
 [sub_resource type="CircleShape2D" id=11]
-radius = 4.0
+radius = 5.0
 
 [sub_resource type="CircleShape2D" id=12]
 radius = 5.0
@@ -103,15 +103,12 @@ __meta__ = {
 	Increased Max Speed == from 50 - 60
 	Increased Damage == from 1 - 2"
 }
-MAX_SPEED = 60
 WANDER_TARGET_RANGE = 2
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = SubResource( 1 )
-position = Vector2( 0, 1 )
 frames = SubResource( 7 )
 animation = "AnimationFly"
-frame = 1
 playing = true
 offset = Vector2( 0, -12 )
 
@@ -140,11 +137,12 @@ light_mask = -2147483647
 shape = SubResource( 10 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0, 1 )
 collision_mask = 2147483652
 damage = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2( 1, -11 )
+position = Vector2( 1, -12 )
 shape = SubResource( 11 )
 
 [node name="SoftCollision" parent="." instance=ExtResource( 8 )]

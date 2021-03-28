@@ -4,6 +4,8 @@ var health = max_health setget set_health# use function every variable change (h
 
 export (bool) var bat = false
 export (bool) var hard = false
+export (bool) var boss = false
+var boss_state = false
 
 signal no_health()
 signal health_changed(value)
@@ -22,13 +24,13 @@ func set_health(value):
 		emit_signal("no_health")
 		if hard == true:
 			GlobalCanvas.kc += 2
-		else:
-			if bat == false:
+		if bat == true:
 				GlobalCanvas.kc += 1
-			else:
-				pass
+		if boss == true:
+			GlobalCanvas.kc += 10
 
 
 func _ready():
 	self.health = max_health
+	boss_state = false
 

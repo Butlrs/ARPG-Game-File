@@ -504,7 +504,7 @@ states/Run/node = SubResource( 29 )
 states/Run/position = Vector2( 516, 81 )
 transitions = [ "Idle", "Run", SubResource( 30 ), "Run", "Idle", SubResource( 31 ), "Idle", "Attack", SubResource( 32 ), "Attack", "Idle", SubResource( 33 ) ]
 start_node = "Idle"
-graph_offset = Vector2( 37, -109.555 )
+graph_offset = Vector2( -8, 35.445 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=35]
 
@@ -558,7 +558,6 @@ position = Vector2( 0, -3 )
 texture = ExtResource( 1 )
 vframes = 13
 hframes = 4
-frame = 29
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1 )
@@ -582,6 +581,7 @@ anims/RunUp = SubResource( 14 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 34 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 35 )
 parameters/Attack/blend_position = Vector2( 0, 1 )
 parameters/Idle/blend_position = Vector2( 0, 1 )

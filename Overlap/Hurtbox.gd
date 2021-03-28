@@ -4,7 +4,6 @@ const HitEffect = preload("res://Effects/HitEffect.tscn")
 
 var invincible = false setget set_invincible
 export (bool) var  player = false
-export (bool) var  boss = false
 
 onready var time  = $Timer
 onready var collisionShape = $CollisionShape2D
