@@ -108,9 +108,10 @@ WANDER_TARGET_RANGE = 2
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = SubResource( 1 )
+position = Vector2( 0, 1 )
 frames = SubResource( 7 )
 animation = "AnimationFly"
-frame = 4
+frame = 1
 playing = true
 offset = Vector2( 0, -12 )
 
@@ -124,7 +125,7 @@ shape = SubResource( 8 )
 collision_layer = 8
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2( 0, -13 )
+position = Vector2( 0, -12 )
 shape = SubResource( 9 )
 
 [node name="stats" parent="." instance=ExtResource( 5 )]
@@ -143,7 +144,7 @@ collision_mask = 2147483652
 damage = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2( 0, -14 )
+position = Vector2( 1, -11 )
 shape = SubResource( 11 )
 
 [node name="SoftCollision" parent="." instance=ExtResource( 8 )]
