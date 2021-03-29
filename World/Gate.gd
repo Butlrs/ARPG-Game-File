@@ -1,6 +1,5 @@
 extends Node
 var state = false
-onready var door = get_node("AudioStreamPlayer")
 
 func _ready():
 	state = false
@@ -10,6 +9,6 @@ func _process(delta):
 	if enemies.size() == 0:
 		if state == false:
 			state = true
-			$AudioStreamPlayer.play()
-			yield($AudioStreamPlayer, "finished")
+			$GateEffect.play()
+			yield($GateEffect, "finished")
 			queue_free()

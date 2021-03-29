@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+const heart_entity = preload("res://Enemies/Heart.tscn")
 const EnemyDeathEffect = preload ("res://Effects/EnemyDeathEffect.tscn")
 export var ACCELERATION = 300
 export var MAX_SPEED = 50
@@ -29,8 +30,7 @@ onready var animationPlayer = $AnimationPlayer
 
 func _ready():
 	state = pick_random_state([IDLE, WANDER])
-	add_to_group("enemies")
-
+	
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO , 200 * delta)
 	knockback = move_and_slide(knockback)
@@ -90,19 +90,36 @@ func _on_Hurtbox_area_entered(area):
 		if stats.health <= 10:
 			if stats.boss_state == false:
 				state = STILL
-				MAX_SPEED = 70
+				MAX_SPEED = 60
 				$Hitbox.damage += 10
-				hurtbox.start_invincibility(3.5)
-				$AnimatedSprite.modulate = Color(0, 0, 0) # blue shade
+				$AnimatedSprite.play("Slime_2")
+				hurtbox.start_invincibility(3)
 				$boss_timer.start()
+				spawn_slime()
 				stats.boss_state = true
+
+func spawn_slime():
+	var mini_slime = load("res://Enemies/MiniSlime.tscn")
 
 
 func _on_stats_no_health():
-	queue_free() # at 0 health remove entity
 	var enemyDeathEffect = EnemyDeathEffect.instance()
 	get_parent().add_child(enemyDeathEffect)
 	enemyDeathEffect.global_position = global_position
+	heart_spawn()
+	queue_free()
+
+func heart_spawn():
+	var chance  = range(1,11)[randi()%range(1,11).size()] # in range 1-10
+	if chance <=2: # 20% chance to spawn a heart
+		var heart = heart_entity.instance()
+		get_parent().call_deferred("add_child",heart)
+		heart.global_position = $EntityPosition.global_position
+	else:
+		pass
+
+
+
 
 func _on_Hurtbox_invincibility_started():
 	animationPlayer.play("Start")

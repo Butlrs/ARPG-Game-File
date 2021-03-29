@@ -105,10 +105,14 @@ __meta__ = {
 }
 WANDER_TARGET_RANGE = 2
 
+[node name="EntityPosition" type="Position2D" parent="."]
+position = Vector2( -16, 8 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = SubResource( 1 )
 frames = SubResource( 7 )
 animation = "AnimationFly"
+frame = 1
 playing = true
 offset = Vector2( 0, -12 )
 
@@ -126,7 +130,7 @@ position = Vector2( 0, -12 )
 shape = SubResource( 9 )
 
 [node name="stats" parent="." instance=ExtResource( 5 )]
-max_health = 6
+max_health = 5
 hard = true
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 6 )]
@@ -139,11 +143,11 @@ shape = SubResource( 10 )
 [node name="Hitbox" parent="." instance=ExtResource( 7 )]
 position = Vector2( 0, 1 )
 collision_mask = 2147483652
-damage = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( 1, -12 )
 shape = SubResource( 11 )
+disabled = false
 
 [node name="SoftCollision" parent="." instance=ExtResource( 8 )]
 

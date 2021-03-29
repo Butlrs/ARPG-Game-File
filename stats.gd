@@ -25,12 +25,12 @@ func set_health(value):
 		if hard == true:
 			GlobalCanvas.kc += 2
 		if bat == true:
-				GlobalCanvas.kc += 1
+			GlobalCanvas.kc += 1
 		if boss == true:
 			GlobalCanvas.kc += 10
+
 
 
 func _ready():
 	self.health = max_health
 	boss_state = false
-
