@@ -4,7 +4,7 @@ var state = false
 func _ready():
 	state = false
 
-func _process(delta):
+func _process(_delta):
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	if enemies.size() == 0:
 		if state == false:

@@ -142,20 +142,22 @@ __meta__ = {
 }
 WANDER_TARGET_RANGE = 2
 
+[node name="EntityPosition" type="Position2D" parent="."]
+position = Vector2( -16, 16 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = SubResource( 1 )
 position = Vector2( 0, 13.9999 )
 scale = Vector2( 1.32812, 1.25 )
 frames = SubResource( 15 )
 animation = "Slime"
-frame = 3
+frame = 1
 playing = true
 offset = Vector2( 0, -12 )
 
 [node name="Shadow Sprite" type="Sprite" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0.125, 0 )
 shape = SubResource( 16 )
 
@@ -166,7 +168,7 @@ collision_layer = 8
 shape = SubResource( 17 )
 
 [node name="stats" parent="." instance=ExtResource( 5 )]
-max_health = 20
+max_health = 15
 boss = true
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 6 )]
@@ -196,7 +198,8 @@ anims/Start = SubResource( 20 )
 anims/Stop = SubResource( 21 )
 
 [node name="boss_timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 8.0
+one_shot = true
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_ended"]
 [connection signal="invincibility_started" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_started"]

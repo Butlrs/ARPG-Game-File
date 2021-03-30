@@ -6,6 +6,7 @@ export var ACCELERATION = 500
 export var MAX_SPEED = 80
 export var ROLL_SPEED = 120 # allows for editor changss - easier for debugging
 export var FRICTION = 500
+var timer_state = false
 
 enum {
 	MOVE, # string value representations
@@ -51,7 +52,6 @@ func move_state(delta):
 		animationTree.set("parameters/Idle/blend_position", input_vector)
 		animationTree.set("parameters/Run/blend_position", input_vector)
 		animationTree.set("parameters/Attack/blend_position", input_vector)# stops moving attack animation mid attack
-		animationTree.set("parameters/Roll/blend_position", input_vector)
 		animationState.travel("Run")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
@@ -75,8 +75,6 @@ func attack_animation_finished():
 
 func _on_Hurtbox_area_entered(area):
 	stats.health -= area.damage
-	if stats.health == 0:
-		pass
 	hurtbox.start_invincibility(0.6)
 	hurtbox.create_hit_effect()
 	var playerHurtSound = PlayerHurtSound.instance()

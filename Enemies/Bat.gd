@@ -1,7 +1,10 @@
 extends KinematicBody2D
 
-const heart_entity = preload("res://Enemies/Heart.tscn")
+const heartcontainer = preload("res://Items/HeartContainer.tscn")
+var mini_enemy = load("res://Enemies/MiniSlime.tscn") as PackedScene
+const heart_entity = preload("res://Items/Heart.tscn")
 const EnemyDeathEffect = preload ("res://Effects/EnemyDeathEffect.tscn")
+
 export var ACCELERATION = 300
 export var MAX_SPEED = 50
 export var FRICTION = 200
@@ -30,6 +33,8 @@ onready var animationPlayer = $AnimationPlayer
 
 func _ready():
 	state = pick_random_state([IDLE, WANDER])
+	if stats.mini_slime == true:
+		hurtbox.start_invincibility(0.2)
 	
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO , 200 * delta)
@@ -54,7 +59,6 @@ func _physics_process(delta):
 			var player = playerDetectionZone.player
 			if player != null:
 				accelerate_towards_point(player.global_position, delta) # take x,y from player and subtract from x,y from enemy - normalizing removes vectors allowing multiplication
-				
 			else:
 				state = IDLE # when player moves out of detection zone. switch to idle == apply friction
 			
@@ -93,21 +97,40 @@ func _on_Hurtbox_area_entered(area):
 				MAX_SPEED = 60
 				$Hitbox.damage += 10
 				$AnimatedSprite.play("Slime_2")
-				hurtbox.start_invincibility(3)
+				hurtbox.start_invincibility(8)
 				$boss_timer.start()
 				spawn_slime()
+				spawn_slime()
+				spawn_slime()
 				stats.boss_state = true
+			else:
+				pass
 
 func spawn_slime():
-	var mini_slime = load("res://Enemies/MiniSlime.tscn")
+	var slime = mini_enemy.instance()
+	get_parent().call_deferred("add_child",slime)
+	slime.global_position = $EntityPosition.global_position
+
+func heart_container():
+	if stats.boss == true:
+		var container = heartcontainer.instance()
+		get_parent().call_deferred("add_child",container)
+		container.global_position = $EntityPosition.global_position
 
 
 func _on_stats_no_health():
-	var enemyDeathEffect = EnemyDeathEffect.instance()
-	get_parent().add_child(enemyDeathEffect)
-	enemyDeathEffect.global_position = global_position
-	heart_spawn()
-	queue_free()
+	if stats.mini_slime == true:
+		heart_spawn()
+		heart_container()
+		queue_free()
+	else:
+		var enemyDeathEffect = EnemyDeathEffect.instance()
+		get_parent().add_child(enemyDeathEffect)
+		enemyDeathEffect.global_position = global_position
+		heart_spawn()
+		heart_container()
+		queue_free()
+	
 
 func heart_spawn():
 	var chance  = range(1,11)[randi()%range(1,11).size()] # in range 1-10
@@ -117,10 +140,7 @@ func heart_spawn():
 		heart.global_position = $EntityPosition.global_position
 	else:
 		pass
-
-
-
-
+	
 func _on_Hurtbox_invincibility_started():
 	animationPlayer.play("Start")
 
