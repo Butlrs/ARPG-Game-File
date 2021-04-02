@@ -52,7 +52,7 @@ radius = 6.0
 height = 4.0
 
 [sub_resource type="CircleShape2D" id=10]
-radius = 48.0
+radius = 55.8155
 
 [sub_resource type="CircleShape2D" id=11]
 radius = 4.0
@@ -106,7 +106,6 @@ position = Vector2( 5.96046e-08, 0 )
 scale = Vector2( 0.890625, 0.87875 )
 frames = SubResource( 7 )
 animation = "AnimationFly"
-frame = 3
 playing = true
 offset = Vector2( 0, -12 )
 
@@ -124,7 +123,7 @@ position = Vector2( 0, -11 )
 shape = SubResource( 9 )
 
 [node name="stats" parent="." instance=ExtResource( 5 )]
-max_health = 2
+max_health = 3
 bat = true
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 6 )]

@@ -105,7 +105,6 @@ position = Vector2( 3.57628e-07, -1 )
 scale = Vector2( 0.695313, 0.686042 )
 frames = SubResource( 6 )
 animation = "MiniSlime"
-frame = 3
 playing = true
 offset = Vector2( 0, -12 )
 

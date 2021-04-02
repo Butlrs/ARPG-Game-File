@@ -10,13 +10,17 @@ var timer_state = false
 
 enum {
 	MOVE, # string value representations
-	ATTACK # automatic value 0,1,2
+	ATTACK, # automatic value 0,1,2
+	IDLE
 }
 
+onready var raisingswordtimer = $SwordTimer
 var state = MOVE
 var velocity = Vector2.ZERO
 var roll_vector = Vector2.DOWN
 var stats = PlayerStats
+var raise_animation = false
+var raiseanim = null
 
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
@@ -39,6 +43,8 @@ func _physics_process(delta): # waits until physics have been processed
 			move_state(delta)
 		ATTACK:
 			attack_state(delta)
+		IDLE:
+			idle_state(delta)
 	
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -63,6 +69,9 @@ func move_state(delta):
 	if Input.is_action_just_pressed("attack"):
 		state = ATTACK # stops running move case - starts attack case
 
+func idle_state(_delta):
+	velocity = Vector2.ZERO
+
 func attack_state(_delta):
 	velocity = Vector2.ZERO # sets velocity to 0.
 	animationState.travel("Attack")
@@ -85,3 +94,7 @@ func _on_Hurtbox_invincibility_started():
 
 func _on_Hurtbox_invincibility_ended():
 	blinkAnimationPlayer.play("Stop")
+
+
+func _on_SwordTimer_timeout():
+	$AnimationTree.active = true

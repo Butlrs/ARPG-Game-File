@@ -23,8 +23,6 @@ func start_invincibility(duration):
 	time.start(duration)
 
 func create_hit_effect():
-	if player == true:
-		GlobalCanvas.kc -= 1
 	var effect = HitEffect.instance()
 	var main = get_tree().current_scene
 	main.add_child(effect)

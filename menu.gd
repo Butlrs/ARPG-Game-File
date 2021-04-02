@@ -8,5 +8,6 @@ func _on_Button_pressed():
 	PlayerStats.health = PlayerStats.max_health 
 	GlobalCanvas.kc = 0
 	GlobalCanvas.score = 0
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://World.tscn")
 	

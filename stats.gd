@@ -42,4 +42,5 @@ func _ready():
 
 func _on_player_death_timeout():
 	player_timer = true
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://menu.tscn")
