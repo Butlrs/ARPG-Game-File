@@ -1,4 +1,4 @@
-[gd_scene load_steps=171 format=2]
+[gd_scene load_steps=172 format=2]
 
 [ext_resource path="res://World/gate_3.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://NewSprite/space_ui-Sheet.png" type="Texture" id=17]
 [ext_resource path="res://World/Gate.gd" type="Script" id=18]
 [ext_resource path="res://World/tiles_dungeon_v1.1.png" type="Texture" id=19]
+[ext_resource path="res://mobileUi.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Music and Sounds/Door_Open.wav" type="AudioStream" id=21]
 [ext_resource path="res://Enemies/Boss.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Items/Heart.tscn" type="PackedScene" id=23]
@@ -4083,8 +4084,8 @@ Collision based single tiles"
 }
 
 [node name="VoidBackground" type="Sprite" parent="."]
-position = Vector2( -648, -304 )
-scale = Vector2( 1, 0.901478 )
+position = Vector2( -128.076, -201.952 )
+scale = Vector2( 0.591527, 0.786076 )
 texture = ExtResource( 25 )
 centered = false
 region_enabled = true
@@ -4188,7 +4189,7 @@ light_mask = -2147483648
 position = Vector2( 120, 48 )
 scale = Vector2( 1.15833, 1.15833 )
 frames = SubResource( 135 )
-frame = 1
+frame = 6
 playing = true
 
 [node name="Attack" type="AnimatedSprite" parent="YSort/Tooltips"]
@@ -4197,7 +4198,7 @@ light_mask = 0
 position = Vector2( 120, 216 )
 scale = Vector2( 1.43333, 1.43333 )
 frames = SubResource( 146 )
-frame = 2
+frame = 5
 playing = true
 
 [node name="Enemies" type="YSort" parent="YSort"]
@@ -4258,12 +4259,14 @@ margin_right = 41.0
 margin_bottom = 42.0
 
 [node name="TimingUI" parent="CanvasLayer" instance=ExtResource( 9 )]
+visible = false
 margin_left = -12.0
 margin_top = 154.0
 margin_right = 37.0
 margin_bottom = 203.0
 
 [node name="ScoreUI" parent="CanvasLayer" instance=ExtResource( 14 )]
+visible = false
 margin_left = 288.0
 margin_top = 160.0
 margin_right = 328.0
@@ -4273,6 +4276,8 @@ margin_bottom = 200.0
 stream = ExtResource( 13 )
 volume_db = -7.0
 autoplay = true
+
+[node name="Mobile Movement" parent="." instance=ExtResource( 20 )]
 [connection signal="lever_active" from="YSort/Entities/Lever" to="YSort/Entities/LeverGate" method="_on_Lever_lever_active"]
 
 [editable path="Camera2D"]

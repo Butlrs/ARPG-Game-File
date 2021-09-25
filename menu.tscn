@@ -66,7 +66,7 @@ position = Vector2( 160, 90.0001 )
 scale = Vector2( 1.66667, 1.66667 )
 frames = SubResource( 5 )
 animation = "MainMenu"
-frame = 1
+frame = 3
 playing = true
 
 [node name="Glow" type="AnimatedSprite" parent="."]
@@ -74,7 +74,6 @@ modulate = Color( 1, 1, 1, 0.219608 )
 position = Vector2( 45, 70 )
 scale = Vector2( 4.36719, 4.55469 )
 frames = SubResource( 9 )
-frame = 1
 playing = true
 
 [node name="Glow2" type="AnimatedSprite" parent="."]
@@ -82,7 +81,6 @@ modulate = Color( 1, 1, 1, 0.219608 )
 position = Vector2( 277, 71 )
 scale = Vector2( 4.36719, 4.55469 )
 frames = SubResource( 9 )
-frame = 1
 playing = true
 
 [node name="TextureButton" type="TextureButton" parent="."]
@@ -106,5 +104,4 @@ volume_db = -5.0
 [node name="ButtonPressed" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -10.0
-
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
