@@ -2,7 +2,7 @@ extends Control
 
 var hearts = 4 setget set_hearts
 var max_hearts = 4 setget set_max_hearts
-var more_hearts = 0
+
 
 onready var heartUIFull = $HeartUIFull
 onready var heartUIEmpty = $HeartUIEmpty
@@ -21,7 +21,6 @@ func set_max_hearts(value):
 
 
 func _ready():
-	self.more_hearts = PlayerStats.health
 	self.max_hearts = PlayerStats.max_health
 	self.hearts = PlayerStats.health
 # warning-ignore:return_value_discarded

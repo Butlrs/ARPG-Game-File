@@ -1,0 +1,121 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://GameOver.gd" type="Script" id=1]
+[ext_resource path="res://UI/Play Button_pressed.png" type="Texture" id=2]
+[ext_resource path="res://UI/reset_idle.png" type="Texture" id=3]
+[ext_resource path="res://UI/reset_hover.png" type="Texture" id=4]
+[ext_resource path="res://UI/menu_hover.png" type="Texture" id=5]
+[ext_resource path="res://UI/menu_idle.png" type="Texture" id=6]
+[ext_resource path="res://UI/game_over_screen.png" type="Texture" id=7]
+[ext_resource path="res://UI/Lighting_gameover.png" type="Texture" id=8]
+[ext_resource path="res://Music and Sounds/Game Over.wav" type="AudioStream" id=9]
+[ext_resource path="res://Music and Sounds/Menu Select.wav" type="AudioStream" id=10]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 192, 108 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 7 )
+region = Rect2( 192, 0, 192, 108 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 7 )
+region = Rect2( 384, 0, 192, 108 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 7 )
+region = Rect2( 576, 0, 192, 108 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 8 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]
+
+[node name="GameOver" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 160.582, 90.5 )
+scale = Vector2( 1.67273, 1.67593 )
+frames = SubResource( 5 )
+frame = 3
+playing = true
+
+[node name="Glow" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 1, 1, 0.12549 )
+position = Vector2( 45, 69 )
+scale = Vector2( 4.3291, 4.39258 )
+frames = SubResource( 9 )
+frame = 1
+playing = true
+
+[node name="Glow2" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 1, 1, 0.12549 )
+position = Vector2( 278, 68 )
+scale = Vector2( 4.3291, 4.39258 )
+frames = SubResource( 9 )
+playing = true
+
+[node name="Reset" type="TextureButton" parent="."]
+margin_left = 113.0
+margin_top = 97.0
+margin_right = 205.0
+margin_bottom = 130.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="TextureButton" parent="."]
+margin_left = 113.0
+margin_top = 135.0
+margin_right = 205.0
+margin_bottom = 169.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="ButtonPressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -10.0
+[connection signal="pressed" from="Reset" to="." method="_on_Reset_pressed"]
+[connection signal="pressed" from="Menu" to="." method="_on_Menu_pressed"]

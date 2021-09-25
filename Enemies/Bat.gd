@@ -24,7 +24,6 @@ onready var softCollision = $SoftCollision
 onready var wanderController = $WanderController
 onready var animationPlayer = $AnimationPlayer
 
-
 enum {
 	IDLE, # The states in which the nemy call fall under. Neater more concise management of movement
 	WANDER,
@@ -43,21 +42,30 @@ func _physics_process(delta): # called every frame of the game
 	
 	match state: # Creating values for the STATE machine
 		STILL: # NO MOVEMENT
+			alert_inactive()
 			velocity = velocity.move_toward(Vector2.ZERO, 200 * delta)
+		
 		IDLE: # NO MOVEMENT - LOOKING FOR PLAYER CONSTANTLY
-			velocity = velocity.move_toward(Vector2.ZERO, 200 * delta)
+			alert_inactive()
 			seek_player()
+			velocity = velocity.move_toward(Vector2.ZERO, 200 * delta)
 			if wanderController.get_time_left() == 0:
 				update_wander()
+		
 		WANDER: # MOVING, STILL LOOKING FOR PLAYER UNDER A WANDER RANGE DETERMINES BY EXPORT VARIRABLE
 			seek_player()
+			alert_inactive()
 			if wanderController.get_time_left() == 0:
 				update_wander()
+			
 			accelerate_towards_point(wanderController.target_position, delta) # take x,y from player and subtract from x,y from enemy - normalizing removes vectors allowing multiplication
+			
 			if global_position.distance_to(wanderController.target_position) <= WANDER_TARGET_RANGE:
 				update_wander()
+			
 		CHASE: # MOVING TOWARDS PLAYER IF INSIDE PLAYER DETECTIVE ZONE
 			var player = playerDetectionZone.player
+			alert_active()
 			if player != null:
 				accelerate_towards_point(player.global_position, delta) # take x,y from player and subtract from x,y from enemy - normalizing removes vectors allowing multiplication
 			else:
@@ -69,7 +77,7 @@ func _physics_process(delta): # called every frame of the game
 
 func update_wander(): # Once player leaves the PDZ, reset state and at 1-3 seconds from removalm pick a state to be in.
 	state = pick_random_state([IDLE, WANDER])
-	wanderController.start_wander_timer(rand_range(1,3))
+	wanderController.start_wander_timer(rand_range(1,2))
 
 func accelerate_towards_point(point, delta): # Accelerate towards players location.
 	var direction = global_position.direction_to(point) # take x,y from player and subtract from x,y from enemy - normalizing removes vectors allowing multiplication
@@ -81,6 +89,7 @@ func seek_player():# Look for player, if the player is wihtin the PDZ change sta
 		state = CHASE
 
 func pick_random_state(state_list): # Shuffling list of given values on a stack and then popping the value on top
+	state_list.shuffle()
 	return state_list.pop_front()
 
 
@@ -90,14 +99,13 @@ func _on_Hurtbox_area_entered(area): # When the the hurtbox of the enemy is ente
 	hurtbox.create_hit_effect() 
 	hurtbox.start_invincibility(0.4) 
 	if stats.boss == true: #  if the enemy is a boss
-		if stats.health <= 10: 
+		if stats.health <= 6: 
 			if stats.boss_state == false: # THIS IS DONE TO ENSURE IT IS NOT CALLED MORE THAN ONCE - SETTING A BOOL TO FALSE
-				state = STILL #
-				MAX_SPEED = 60 
-				$Hitbox.damage += 10 
+				state = STILL
+				$Hitbox.damage += 1
 				$AnimatedSprite.play("Slime_2") 
 				hurtbox.start_invincibility(5) 
-				$boss_timer.start() # Sstarts 4.5 seconds until the state chanegs again
+				$boss_timer.start() # Starts 4.5 seconds until the state chanegs again
 				spawn_slime() # UNENEAT - Spawns 3 enemies under the boss that are chasing rh player
 				spawn_slime()
 				spawn_slime()
@@ -116,6 +124,13 @@ func heart_container():
 		get_parent().call_deferred("add_child",container)
 		container.global_position = $EntityPosition.global_position
 
+func alert_active():
+	if stats.bat == true or stats.hard == true:
+		$AnimatedSprite.play("Alert")
+
+func alert_inactive():
+	if stats.bat == true or stats.hard == true:
+		$AnimatedSprite.play("Idle") # Playing alert! When in player area
 
 func _on_stats_no_health():
 	if stats.mini_slime == true: #  if the script attached to bat.gd == the mini slime entity

@@ -4,6 +4,7 @@
 
 [node name="PlayerStats" instance=ExtResource( 1 )]
 max_health = 5
+max_shields = 3
 player = true
 
 [node name="player_death" type="Timer" parent="." index="0"]

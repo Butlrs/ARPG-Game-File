@@ -1,4 +1,4 @@
-extends Node2D
+extends StaticBody2D
 
 var state = false
 
@@ -14,5 +14,6 @@ func _process(_delta):
 			$GateEffect.play() #play audio
 			yield ($GateEffect, "finished") # wait 
 			$GateAnim.play("Gate") # play animation
+			$GateOpening.play()
 			yield ($GateAnim,"animation_finished") #wait
 			queue_free() #remove

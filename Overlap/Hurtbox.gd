@@ -21,7 +21,8 @@ func set_invincible(value):
 func start_invincibility(duration):
 	self.invincible = true #starts timer
 	time.start(duration)
-
+func stop_invincibility():
+	self.invincible = false
 func create_hit_effect():
 	var effect = HitEffect.instance()
 	var main = get_tree().current_scene

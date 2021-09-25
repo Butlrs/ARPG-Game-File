@@ -18,73 +18,73 @@ shader = ExtResource( 10 )
 shader_param/active = false
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 16, 24 )
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 16, 0, 16, 24 )
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 32, 0, 16, 24 )
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 16, 24 )
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 16, 24 )
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 11 )
-region = Rect2( 0, 0, 16, 16 )
+region = Rect2( 16, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 11 )
-region = Rect2( 16, 0, 16, 16 )
+region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 11 )
-region = Rect2( 32, 0, 16, 16 )
+region = Rect2( 48, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 11 )
-region = Rect2( 48, 0, 16, 16 )
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 24 )
 
 [sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 16, 16 )
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 24 )
 
 [sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 2 )
-region = Rect2( 16, 0, 16, 16 )
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 16, 24 )
 
 [sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 16, 16 )
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 16, 24 )
 
 [sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 2 )
-region = Rect2( 48, 0, 16, 16 )
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 16, 24 )
 
 [sub_resource type="SpriteFrames" id=15]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
-"name": "AnimationFly",
-"speed": 10.0
+"name": "Slime_2",
+"speed": 5.0
 }, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "Slime",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,
-"name": "Slime_2",
-"speed": 5.0
+"name": "AnimationFly",
+"speed": 10.0
 } ]
 
 [sub_resource type="CircleShape2D" id=16]
@@ -141,6 +141,7 @@ __meta__ = {
 	Increased Max Speed == from 50 - 60
 	Increased Damage == from 1 - 2"
 }
+MAX_SPEED = 30
 WANDER_TARGET_RANGE = 2
 
 [node name="EntityPosition" type="Position2D" parent="."]
@@ -159,7 +160,6 @@ offset = Vector2( 0, -12 )
 [node name="Shadow Sprite" type="Sprite" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0.125, 0 )
 shape = SubResource( 16 )
 
@@ -167,17 +167,15 @@ shape = SubResource( 16 )
 collision_layer = 8
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-visible = false
 shape = SubResource( 17 )
 
 [node name="stats" parent="." instance=ExtResource( 5 )]
-max_health = 15
+max_health = 10
 boss = true
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 6 )]
 
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
-visible = false
 modulate = Color( 1, 1, 1, 0.270588 )
 light_mask = -2147483647
 shape = SubResource( 18 )
@@ -185,7 +183,6 @@ shape = SubResource( 18 )
 [node name="Hitbox" parent="." instance=ExtResource( 7 )]
 position = Vector2( -0.0255547, -0.692839 )
 collision_mask = 2147483652
-damage = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( 0.095993, 0.176212 )
@@ -206,6 +203,8 @@ anims/Stop = SubResource( 21 )
 [node name="boss_timer" type="Timer" parent="."]
 wait_time = 4.8
 one_shot = true
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_ended"]
 [connection signal="invincibility_started" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_started"]
