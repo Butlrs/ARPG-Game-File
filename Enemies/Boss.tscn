@@ -153,7 +153,7 @@ position = Vector2( 0, 13.9999 )
 scale = Vector2( 1.32812, 1.25 )
 frames = SubResource( 15 )
 animation = "Slime"
-frame = 3
+frame = 2
 playing = true
 offset = Vector2( 0, -12 )
 
@@ -205,6 +205,7 @@ wait_time = 4.8
 one_shot = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_ended"]
 [connection signal="invincibility_started" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_started"]
@@ -212,9 +213,6 @@ one_shot = true
 [connection signal="timeout" from="boss_timer" to="." method="_on_boss_timer_timeout"]
 
 [editable path="Hurtbox"]
-
 [editable path="PlayerDetectionZone"]
-
 [editable path="Hitbox"]
-
 [editable path="SoftCollision"]

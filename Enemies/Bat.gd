@@ -28,7 +28,7 @@ enum {
 	IDLE, # The states in which the nemy call fall under. Neater more concise management of movement
 	WANDER,
 	CHASE,
-	STILL
+	STILL,
 }
 
 func _ready():
@@ -44,7 +44,7 @@ func _physics_process(delta): # called every frame of the game
 		STILL: # NO MOVEMENT
 			alert_inactive()
 			velocity = velocity.move_toward(Vector2.ZERO, 200 * delta)
-		
+
 		IDLE: # NO MOVEMENT - LOOKING FOR PLAYER CONSTANTLY
 			alert_inactive()
 			seek_player()
@@ -95,28 +95,12 @@ func pick_random_state(state_list): # Shuffling list of given values on a stack 
 
 func _on_Hurtbox_area_entered(area): # When the the hurtbox of the enemy is entered by the players sword.
 	stats.health -= area.damage # Enemy health - the players swords exported var damage
-	knockback = area.knockback_vector * 120 
+	knockback = area.knockback_vector * 120
 	hurtbox.create_hit_effect() 
-	hurtbox.start_invincibility(0.4) 
-	if stats.boss == true: #  if the enemy is a boss
-		if stats.health <= 6: 
-			if stats.boss_state == false: # THIS IS DONE TO ENSURE IT IS NOT CALLED MORE THAN ONCE - SETTING A BOOL TO FALSE
-				state = STILL
-				$Hitbox.damage += 1
-				$AnimatedSprite.play("Slime_2") 
-				hurtbox.start_invincibility(5) 
-				$boss_timer.start() # Starts 4.5 seconds until the state chanegs again
-				spawn_slime() # UNENEAT - Spawns 3 enemies under the boss that are chasing rh player
-				spawn_slime()
-				spawn_slime()
-				stats.boss_state = true # ONCE SCRIPT HAS BEEN COMPLETED ONCE CHANGE THE STATE TO TRUE SO IT CANNOT RUN AGAIN
-			else:
-				pass
+	state = STILL
+	hurtbox.start_invincibility(0.3)
+	$CD.start()
 
-func spawn_slime(): #function to create a slime entity
-	var slime = mini_enemy.instance()
-	get_parent().call_deferred("add_child",slime)
-	slime.global_position = $EntityPosition.global_position
 
 func heart_container():
 	if stats.boss == true: # If a boss, the boss will drop a heart_container. - Increasing health by a maximum
@@ -126,11 +110,12 @@ func heart_container():
 
 func alert_active():
 	if stats.bat == true or stats.hard == true:
-		$AnimatedSprite.play("Alert")
+		pass
+
 
 func alert_inactive():
 	if stats.bat == true or stats.hard == true:
-		$AnimatedSprite.play("Idle") # Playing alert! When in player area
+		pass
 
 func _on_stats_no_health():
 	if stats.mini_slime == true: #  if the script attached to bat.gd == the mini slime entity
@@ -160,5 +145,5 @@ func _on_Hurtbox_invincibility_started():
 func _on_Hurtbox_invincibility_ended():
 	animationPlayer.play("Stop")
 
-func _on_boss_timer_timeout(): # on time-timeout set the boss back to chasing the player
-	state = CHASE
+func _on_CD_timeout():
+	state = IDLE

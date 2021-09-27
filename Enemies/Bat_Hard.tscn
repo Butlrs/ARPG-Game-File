@@ -184,10 +184,14 @@ shape = SubResource( 17 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Start = SubResource( 18 )
 anims/Stop = SubResource( 19 )
+
+[node name="CD" type="Timer" parent="."]
+wait_time = 0.7
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_ended"]
 [connection signal="invincibility_started" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_started"]
 [connection signal="no_health" from="stats" to="." method="_on_stats_no_health"]
+[connection signal="timeout" from="CD" to="." method="_on_CD_timeout"]
 
 [editable path="Hurtbox"]
 
