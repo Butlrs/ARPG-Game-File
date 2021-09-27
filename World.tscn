@@ -1,4 +1,4 @@
-[gd_scene load_steps=171 format=2]
+[gd_scene load_steps=170 format=2]
 
 [ext_resource path="res://World/gate_3.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://Camera2D.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Music and Sounds/GameMusic.wav" type="AudioStream" id=13]
 [ext_resource path="res://UI/ScoreUI.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Enemies/Bat_Hard.tscn" type="PackedScene" id=15]
 [ext_resource path="res://NewSprite/movement_hud-Sheet-export.png" type="Texture" id=16]
 [ext_resource path="res://NewSprite/space_ui-Sheet.png" type="Texture" id=17]
 [ext_resource path="res://World/Gate.gd" type="Script" id=18]
@@ -3947,38 +3946,38 @@ region = Rect2( 0, 0, 48, 16 )
 
 [sub_resource type="AtlasTexture" id=119]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 48, 16 )
+region = Rect2( 48, 0, 48, 16 )
 
 [sub_resource type="AtlasTexture" id=120]
 atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 48, 16 )
+region = Rect2( 96, 0, 48, 16 )
 
 [sub_resource type="AtlasTexture" id=121]
 atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 48, 16 )
+region = Rect2( 144, 0, 48, 16 )
 
 [sub_resource type="AtlasTexture" id=122]
 atlas = ExtResource( 1 )
-region = Rect2( 144, 0, 48, 16 )
+region = Rect2( 192, 0, 48, 16 )
 
 [sub_resource type="AtlasTexture" id=123]
 atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 48, 16 )
+region = Rect2( 240, 0, 48, 16 )
 
 [sub_resource type="AtlasTexture" id=124]
 atlas = ExtResource( 1 )
-region = Rect2( 240, 0, 48, 16 )
+region = Rect2( 0, 0, 48, 16 )
 
 [sub_resource type="SpriteFrames" id=125]
 animations = [ {
-"frames": [ SubResource( 118 ) ],
-"loop": true,
-"name": "Closed",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 119 ), SubResource( 120 ), SubResource( 121 ), SubResource( 122 ), SubResource( 123 ), SubResource( 124 ) ],
+"frames": [ SubResource( 118 ), SubResource( 119 ), SubResource( 120 ), SubResource( 121 ), SubResource( 122 ), SubResource( 123 ) ],
 "loop": true,
 "name": "Gate",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 124 ) ],
+"loop": true,
+"name": "Closed",
 "speed": 5.0
 } ]
 
@@ -4188,7 +4187,7 @@ light_mask = -2147483648
 position = Vector2( -88, 152 )
 scale = Vector2( 1.15833, 1.15833 )
 frames = SubResource( 135 )
-frame = 6
+frame = 2
 playing = true
 
 [node name="Attack" type="AnimatedSprite" parent="YSort/Tooltips"]
@@ -4197,16 +4196,10 @@ light_mask = 0
 position = Vector2( -88, 184 )
 scale = Vector2( 1.43333, 1.43333 )
 frames = SubResource( 146 )
-frame = 4
+frame = 7
 playing = true
 
 [node name="Enemies" type="YSort" parent="YSort"]
-
-[node name="BatHard5" parent="YSort/Enemies" groups=[
-"enemies",
-] instance=ExtResource( 15 )]
-position = Vector2( 360, 56 )
-WANDER_TARGET_RANGE = 1
 
 [node name="Bat" parent="YSort/Enemies" groups=[
 "enemies",
@@ -4274,6 +4267,7 @@ volume_db = -7.0
 autoplay = true
 
 [node name="Mobile Movement" parent="." instance=ExtResource( 20 )]
+
 [connection signal="lever_active" from="YSort/Entities/Lever" to="YSort/Entities/LeverGate" method="_on_Lever_lever_active"]
 
 [editable path="Camera2D"]

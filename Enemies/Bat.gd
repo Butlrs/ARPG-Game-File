@@ -6,7 +6,7 @@ const heartcontainer = preload("res://Items/HeartContainer.tscn") # Preloading a
 const heart_entity = preload("res://Items/Heart.tscn")
 const EnemyDeathEffect = preload ("res://Effects/EnemyDeathEffect.tscn")
 
-var mini_enemy = load("res://Enemies/MiniSlime.tscn") as PackedScene # allowing multiple tscn's to pass under one entity crash free
+#var mini_enemy = load("res://Enemies/MiniSlime.tscn") as PackedScene # allowing multiple tscn's to pass under one entity crash free
 var velocity = Vector2.ZERO # setting values based on predetermines values.
 var knockback =  Vector2.ZERO
 var state = CHASE # Setting base state to chace, whenever player comes into contact - CHASE
@@ -103,32 +103,22 @@ func _on_Hurtbox_area_entered(area): # When the the hurtbox of the enemy is ente
 
 
 func heart_container():
-	if stats.boss == true: # If a boss, the boss will drop a heart_container. - Increasing health by a maximum
-		var container = heartcontainer.instance()
-		get_parent().call_deferred("add_child",container)
-		container.global_position = $EntityPosition.global_position
+	pass
 
 func alert_active():
-	if stats.bat == true or stats.hard == true:
-		pass
+	pass
 
 
 func alert_inactive():
-	if stats.bat == true or stats.hard == true:
-		pass
+	pass
 
 func _on_stats_no_health():
-	if stats.mini_slime == true: #  if the script attached to bat.gd == the mini slime entity
-		heart_spawn() # call functions to check for a heart spawn and container spawn
-		heart_container()
-		queue_free()
-	else: # if the enemy is not a mini slime then produce a death effect. - Death effect stacked and was too excessive
-		var enemyDeathEffect = EnemyDeathEffect.instance()
-		get_parent().add_child(enemyDeathEffect)
-		enemyDeathEffect.global_position = global_position
-		heart_spawn()
-		heart_container()
-		queue_free()
+	var enemyDeathEffect = EnemyDeathEffect.instance()
+	get_parent().add_child(enemyDeathEffect)
+	enemyDeathEffect.global_position = global_position
+	heart_spawn()
+	heart_container()
+	queue_free()
 
 func heart_spawn():
 	var chance  = range(1,11)[randi()%range(1,11).size()] # in range 1-10

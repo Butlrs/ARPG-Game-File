@@ -105,4 +105,5 @@ volume_db = -5.0
 [node name="ButtonPressed" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -10.0
+
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
