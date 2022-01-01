@@ -3940,6 +3940,10 @@ points = PoolVector2Array( 8.67798, 11.4884, 14.5999, 8.93121, 21.0601, 10.1425,
 [sub_resource type="RectangleShape2D" id=117]
 extents = Vector2( 24, 8 )
 
+[sub_resource type="AtlasTexture" id=124]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 48, 16 )
+
 [sub_resource type="AtlasTexture" id=118]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 48, 16 )
@@ -3964,20 +3968,16 @@ region = Rect2( 192, 0, 48, 16 )
 atlas = ExtResource( 1 )
 region = Rect2( 240, 0, 48, 16 )
 
-[sub_resource type="AtlasTexture" id=124]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 48, 16 )
-
 [sub_resource type="SpriteFrames" id=125]
 animations = [ {
-"frames": [ SubResource( 118 ), SubResource( 119 ), SubResource( 120 ), SubResource( 121 ), SubResource( 122 ), SubResource( 123 ) ],
-"loop": true,
-"name": "Gate",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 124 ) ],
 "loop": true,
 "name": "Closed",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 118 ), SubResource( 119 ), SubResource( 120 ), SubResource( 121 ), SubResource( 122 ), SubResource( 123 ) ],
+"loop": true,
+"name": "Gate",
 "speed": 5.0
 } ]
 
@@ -4082,7 +4082,7 @@ Collision based single tiles"
 }
 
 [node name="VoidBackground" type="Sprite" parent="."]
-position = Vector2( -128.076, -201.952 )
+position = Vector2( -128, -200 )
 scale = Vector2( 0.591527, 0.786076 )
 texture = ExtResource( 25 )
 centered = false
@@ -4134,7 +4134,7 @@ position = Vector2( 120, 85 )
 position = Vector2( 16, -192 )
 
 [node name="BottomRight" parent="Camera2D/Limits" index="1"]
-position = Vector2( 544, 448 )
+position = Vector2( 552, 448 )
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -4184,52 +4184,40 @@ __meta__ = {
 [node name="Movement" type="AnimatedSprite" parent="YSort/Tooltips"]
 modulate = Color( 1, 1, 1, 0.588235 )
 light_mask = -2147483648
-position = Vector2( -88, 152 )
+position = Vector2( 120, 48 )
 scale = Vector2( 1.15833, 1.15833 )
 frames = SubResource( 135 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Attack" type="AnimatedSprite" parent="YSort/Tooltips"]
 modulate = Color( 1, 1, 1, 0.588235 )
 light_mask = 0
-position = Vector2( -88, 184 )
-scale = Vector2( 1.43333, 1.43333 )
+position = Vector2( 120, 144 )
+scale = Vector2( 1.38333, 1.43333 )
 frames = SubResource( 146 )
-frame = 7
+frame = 9
 playing = true
 
 [node name="Enemies" type="YSort" parent="YSort"]
 
-[node name="Bat" parent="YSort/Enemies" groups=[
-"enemies",
-] instance=ExtResource( 7 )]
-position = Vector2( 360, 160 )
+[node name="Bat" parent="YSort/Enemies" groups=["enemies"] instance=ExtResource( 7 )]
+position = Vector2( 360, 136 )
 
-[node name="Bat5" parent="YSort/Enemies" groups=[
-"enemies",
-] instance=ExtResource( 7 )]
-position = Vector2( 360, 296 )
+[node name="Bat5" parent="YSort/Enemies" groups=["enemies"] instance=ExtResource( 7 )]
+position = Vector2( 368, 296 )
 
-[node name="Bat2" parent="YSort/Enemies" groups=[
-"enemies",
-] instance=ExtResource( 7 )]
-position = Vector2( 424, 104 )
+[node name="Bat2" parent="YSort/Enemies" groups=["enemies"] instance=ExtResource( 7 )]
+position = Vector2( 424, 88 )
 
-[node name="Bat4" parent="YSort/Enemies" groups=[
-"enemies",
-] instance=ExtResource( 7 )]
-position = Vector2( 296, 104 )
+[node name="Bat4" parent="YSort/Enemies" groups=["enemies"] instance=ExtResource( 7 )]
+position = Vector2( 296, 88 )
 
-[node name="Bat3" parent="YSort/Enemies" groups=[
-"enemies",
-] instance=ExtResource( 7 )]
-position = Vector2( 320, 352 )
+[node name="Bat3" parent="YSort/Enemies" groups=["enemies"] instance=ExtResource( 7 )]
+position = Vector2( 288, 368 )
 
-[node name="Bat7" parent="YSort/Enemies" groups=[
-"enemies",
-] instance=ExtResource( 7 )]
-position = Vector2( 280, 304 )
+[node name="Bat7" parent="YSort/Enemies" groups=["enemies"] instance=ExtResource( 7 )]
+position = Vector2( 120, 296 )
 WANDER_TARGET_RANGE = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -4263,7 +4251,7 @@ margin_bottom = 200.0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
-volume_db = -7.0
+volume_db = -80.0
 autoplay = true
 
 [node name="Mobile Movement" parent="." instance=ExtResource( 20 )]

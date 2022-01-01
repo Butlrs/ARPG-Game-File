@@ -30,26 +30,27 @@ extents = Vector2( 16, 16 )
 [node name="Mobile Movement" type="CanvasLayer"]
 
 [node name="AttackButton" type="TouchScreenButton" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 264, 128 )
 scale = Vector2( 1.31911, 1.31911 )
 normal = ExtResource( 2 )
 pressed = ExtResource( 1 )
 shape = SubResource( 1 )
-passby_press = true
 action = "attack"
 
 [node name="BlockButton" type="TouchScreenButton" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 208, 128 )
 scale = Vector2( 1.31911, 1.31911 )
 normal = ExtResource( 8 )
 pressed = ExtResource( 3 )
 shape = SubResource( 2 )
-passby_press = true
 action = "Block"
 
 [node name="Up" type="TouchScreenButton" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 40, 80 )
 normal = ExtResource( 7 )
@@ -59,6 +60,7 @@ action = "ui_up"
 visibility_mode = 1
 
 [node name="Down" type="TouchScreenButton" parent="."]
+visible = false
 self_modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 40, 144 )
 normal = ExtResource( 5 )
@@ -67,6 +69,7 @@ passby_press = true
 action = "ui_down"
 
 [node name="Left" type="TouchScreenButton" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 8, 112 )
 normal = ExtResource( 6 )
@@ -75,6 +78,7 @@ passby_press = true
 action = "ui_left"
 
 [node name="Right" type="TouchScreenButton" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.588235 )
 position = Vector2( 72, 112 )
 normal = ExtResource( 4 )

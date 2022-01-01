@@ -3,7 +3,7 @@
 [ext_resource path="res://Player/Block.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 9, 7 )
+extents = Vector2( 6.80575, 2.98159 )
 
 [node name="BlockHitbox" type="Area2D"]
 position = Vector2( -3.01813, 0.0496063 )

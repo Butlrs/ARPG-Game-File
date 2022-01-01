@@ -37,12 +37,8 @@ func set_health(value):
 	emit_signal("health_changed", health)
 	if health <= 0:
 		emit_signal("no_health")
-		if hard == true:
-			GlobalCanvas.kc += 2
 		if bat == true:
 			GlobalCanvas.kc += 1
-		if boss == true:
-			GlobalCanvas.kc += 10
 		if player == true:
 			if player_timer == false:
 				$player_death.start()
@@ -54,7 +50,6 @@ func set_shields(value):
 func _ready():
 	self.health = max_health
 	self.shields = max_shields
-	boss_state = false
 
 func _on_player_death_timeout():
 	player_timer = true

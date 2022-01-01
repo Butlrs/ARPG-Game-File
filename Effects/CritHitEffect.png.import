@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ShieldUIFULL.png-e6c54fc20583f193c56446a4d81c42da.stex"
+path="res://.import/CritHitEffect.png-05ea7ee9fe078226a9dcf96d15218901.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/ShieldUIFULL.png"
-dest_files=[ "res://.import/ShieldUIFULL.png-e6c54fc20583f193c56446a4d81c42da.stex" ]
+source_file="res://Effects/CritHitEffect.png"
+dest_files=[ "res://.import/CritHitEffect.png-05ea7ee9fe078226a9dcf96d15218901.stex" ]
 
 [params]
 

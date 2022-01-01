@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ShieldUIFULL.png-e6c54fc20583f193c56446a4d81c42da.stex"
+path="res://.import/image10.png-19c345c04d78bac514dda7b9343a15d8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/ShieldUIFULL.png"
-dest_files=[ "res://.import/ShieldUIFULL.png-e6c54fc20583f193c56446a4d81c42da.stex" ]
+source_file="res://Tilemap Assets/rpg-dungeon-pack v1.1(wonderdot)/tileset guide/images/image10.png"
+dest_files=[ "res://.import/image10.png-19c345c04d78bac514dda7b9343a15d8.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

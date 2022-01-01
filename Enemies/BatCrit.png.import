@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ShieldUIFULL.png-e6c54fc20583f193c56446a4d81c42da.stex"
+path="res://.import/BatCrit.png-d36ea32ffc148ed610d67adb960411bc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/ShieldUIFULL.png"
-dest_files=[ "res://.import/ShieldUIFULL.png-e6c54fc20583f193c56446a4d81c42da.stex" ]
+source_file="res://Enemies/BatCrit.png"
+dest_files=[ "res://.import/BatCrit.png-d36ea32ffc148ed610d67adb960411bc.stex" ]
 
 [params]
 

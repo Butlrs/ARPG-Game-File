@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ShieldUIFULL.png-e6c54fc20583f193c56446a4d81c42da.stex"
+path="res://.import/Block.png-3106eb9a4922e4da6091fcf5c032822c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/ShieldUIFULL.png"
-dest_files=[ "res://.import/ShieldUIFULL.png-e6c54fc20583f193c56446a4d81c42da.stex" ]
+source_file="res://Player/Block.png"
+dest_files=[ "res://.import/Block.png-3106eb9a4922e4da6091fcf5c032822c.stex" ]
 
 [params]
 

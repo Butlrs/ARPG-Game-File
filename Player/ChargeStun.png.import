@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ShieldUIFULL.png-e6c54fc20583f193c56446a4d81c42da.stex"
+path="res://.import/ChargeStun.png-e97d941d5f5bbd70e51ac64df6cb8606.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/ShieldUIFULL.png"
-dest_files=[ "res://.import/ShieldUIFULL.png-e6c54fc20583f193c56446a4d81c42da.stex" ]
+source_file="res://Player/ChargeStun.png"
+dest_files=[ "res://.import/ChargeStun.png-e97d941d5f5bbd70e51ac64df6cb8606.stex" ]
 
 [params]
 

@@ -1,6 +1,6 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=39 format=2]
 
-[ext_resource path="res://Enemies/bat_alert2.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/BatCrit.png" type="Texture" id=1]
 [ext_resource path="res://Shadows/SmallShadow.png" type="Texture" id=2]
 [ext_resource path="res://Overlap/Hurtbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/Bat.gd" type="Script" id=4]
@@ -9,13 +9,27 @@
 [ext_resource path="res://Overlap/Hitbox.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Overlap/SoftCollision.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Enemies/WanderController.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Shadows/WhiteColour.shader" type="Shader" id=10]
-[ext_resource path="res://Enemies/bat_stunned.png" type="Texture" id=11]
+[ext_resource path="res://Effects/stunned.png" type="Texture" id=10]
 [ext_resource path="res://Enemies/BatRecolour.png" type="Texture" id=12]
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="Shader" id=28]
+code = "shader_type canvas_item;
+
+uniform bool active = false;
+
+void fragment() {
+	vec4 previous_color = texture(TEXTURE, UV);
+	vec4 white_color = vec4(1.0,1.0,1.0, previous_color.a);
+	vec4 new_color = previous_color;
+	if (active == true) {
+		new_color = white_color;
+	}
+	COLOR = new_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=27]
 resource_local_to_scene = true
-shader = ExtResource( 10 )
+shader = SubResource( 28 )
 shader_param/active = false
 
 [sub_resource type="AtlasTexture" id=2]
@@ -38,45 +52,25 @@ region = Rect2( 48, 0, 16, 24 )
 atlas = ExtResource( 12 )
 region = Rect2( 64, 0, 16, 24 )
 
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 11 )
-region = Rect2( 0, 0, 16, 53 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 11 )
-region = Rect2( 16, 0, 16, 53 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 11 )
-region = Rect2( 32, 0, 16, 53 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 11 )
-region = Rect2( 48, 0, 16, 53 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 11 )
-region = Rect2( 64, 0, 16, 53 )
-
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=29]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 16, 53 )
+region = Rect2( 0, 0, 16, 24 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=30]
 atlas = ExtResource( 1 )
-region = Rect2( 16, 0, 16, 53 )
+region = Rect2( 16, 0, 16, 24 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=31]
 atlas = ExtResource( 1 )
-region = Rect2( 32, 0, 16, 53 )
+region = Rect2( 32, 0, 16, 24 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 16, 53 )
+region = Rect2( 48, 0, 16, 24 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=33]
 atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 16, 53 )
+region = Rect2( 64, 0, 16, 24 )
 
 [sub_resource type="SpriteFrames" id=17]
 animations = [ {
@@ -85,15 +79,10 @@ animations = [ {
 "name": "Idle",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
 "loop": true,
-"name": "Stunned",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
-"loop": true,
-"name": "Alert",
-"speed": 8.0
+"name": "Crit",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=18]
@@ -143,6 +132,38 @@ tracks/0/keys = {
 "values": [ false ]
 }
 
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 10 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 10 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 10 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 10 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 10 )
+region = Rect2( 160, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=40]
+animations = [ {
+"frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+} ]
+
 [node name="Bat" type="KinematicBody2D"]
 collision_layer = 2147483664
 script = ExtResource( 4 )
@@ -152,12 +173,12 @@ MAX_SPEED = 40
 position = Vector2( -16, 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-material = SubResource( 1 )
+material = SubResource( 27 )
 position = Vector2( 0, -15 )
 scale = Vector2( 0.890625, 0.87875 )
 frames = SubResource( 17 )
 animation = "Idle"
-frame = 1
+frame = 4
 playing = true
 
 [node name="Shadow Sprite" type="Sprite" parent="."]
@@ -174,7 +195,7 @@ position = Vector2( 0, -11 )
 shape = SubResource( 19 )
 
 [node name="stats" parent="." instance=ExtResource( 5 )]
-max_health = 2
+max_health = 5
 bat = true
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 6 )]
@@ -204,18 +225,25 @@ shape = SubResource( 22 )
 anims/Start = SubResource( 23 )
 anims/Stop = SubResource( 24 )
 
-[node name="CD" type="Timer" parent="."]
-wait_time = 0.6
+[node name="Stunned" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Stun Icon" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 0.364601, -17.6645 )
+scale = Vector2( 0.81565, 0.81565 )
+frames = SubResource( 40 )
+frame = 4
+playing = true
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_ended"]
 [connection signal="invincibility_started" from="Hurtbox" to="." method="_on_Hurtbox_invincibility_started"]
 [connection signal="no_health" from="stats" to="." method="_on_stats_no_health"]
-[connection signal="timeout" from="CD" to="." method="_on_CD_timeout"]
+[connection signal="timeout" from="Stunned" to="." method="_on_Stunned_timeout"]
 
 [editable path="Hurtbox"]
-
 [editable path="PlayerDetectionZone"]
-
 [editable path="Hitbox"]
-
 [editable path="SoftCollision"]

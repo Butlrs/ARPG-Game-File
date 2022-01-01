@@ -7,13 +7,12 @@ export var MAX_SPEED = 80
 export var ROLL_SPEED = 120 # allows for editor changss - easier for debugging
 export var FRICTION = 500
 
-
 enum {
 	MOVE, # string value representations
 	ATTACK, # automatic value 0,1,2
 	IDLE,
 	BLOCK,
-	CONGRATS
+	CHARGE
 }
 
 var state = MOVE
@@ -52,7 +51,7 @@ func _physics_process(delta): # waits until physics have been processed
 			idle_state(delta)
 		BLOCK:
 			block_state(delta)
-		CONGRATS:
+		CHARGE:
 			congrats_state(delta)
 	
 func move_state(delta):
@@ -64,7 +63,7 @@ func move_state(delta):
 	if input_vector != Vector2.ZERO:
 		roll_vector = input_vector
 		swordHitbox.knockback_vector = input_vector * 0.6 # code to store knockback movement as direction
-		blockHitbox.knockback_vector = input_vector * 1.3
+		blockHitbox.knockback_vector = input_vector * 0.8 # IVE DEFINITLY FUCKED UP KNOCKBACK DELTA SOMEWHERE #
 		animationTree.set("parameters/Idle/blend_position", input_vector)
 		animationTree.set("parameters/Run/blend_position", input_vector)
 		animationTree.set("parameters/Attack/blend_position", input_vector)# stops moving attack animation mid attack
@@ -89,7 +88,10 @@ func move_state(delta):
 			PlayerStats.shields -=1
 
 	if Input.is_action_just_pressed("Emote"):
-		state = CONGRATS
+		if PlayerStats.shields == 3:
+			$ShieldRegen.start()
+			state = CHARGE
+			PlayerStats.shields -=3
 
 
 func idle_state(_delta):
